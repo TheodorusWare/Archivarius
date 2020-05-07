@@ -1,0 +1,45 @@
+-----------------------------------------------------------------------------
+	Archive file format
+-----------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------
+	Archive header 
+-----------------------------------------------------------------------------
+
+	0xNN offset hex
+	[N]  size in bytes
+	
+	Total 40 bytes
+	
+	0x00 [4] archive signature arv3, 0x33767261 (little endian)
+	0x04 [4] count files in archive
+	0x08 [8] files data size
+	0x10 [8] preprocessing bigraph size
+	0x18 [4] compression properties
+	0x1C [4] archive options, low 2 bits encryption
+	0x20 [4] crc-32 crypt string
+	0x24 [4] crc-32 archive header
+
+-----------------------------------------------------------------------------
+	Archive file header
+-----------------------------------------------------------------------------
+
+	Total 22 bytes
+	
+	0x00 [2] file name len
+	0x02 [8] file data size (uncompressed)
+	0x0A [4] file data crc-32
+	0x0E [8] last modified time (windows)
+
+-----------------------------------------------------------------------------
+	Archive file structure
+-----------------------------------------------------------------------------
+
+	1. archive header
+	2. all files headers
+	3. all files names
+	4. all files datas
+
+-----------------------------------------------------------------------------
+	Copyright (C) 2018-2020 Theodorus Software
+-----------------------------------------------------------------------------

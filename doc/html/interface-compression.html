@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Archivarius</title>
+</head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" href="image/style.css">
+<body>
+<p>
+<a href="index.html"> Index </a>
+</p>
+<h1 align=center>Archivarius interface</h1>
+<h2 align=center>Compression settings window</h2>
+<p align=center>
+<img src="image/compress.png" alt="text">
+</p>
+<p><br>
+Compression settings window consist of three buttons,
+three checkbox, three edit fields, six combobox and nine labels.
+</p>
+<h3>Buttons</h3>
+<table border="1" width="90%" cellpadding="5">
+<tr class="table-head">
+<td width="20%">Item</td>
+<td>Description</td>
+</tr>
+<tr>
+<td>...</td>
+<td>Archive path over file dialog.</td>
+</tr>
+<tr>
+<td>OK</td>
+<td>Close window and start compression.</td>
+</tr>
+<tr>
+<td>Cancel</td>
+<td>Close window and return to main window.</td>
+</tr>
+</table>
+<h3>Edit fields</h3>
+<table border="1" width="90%" cellpadding="5">
+<tr class="table-head">
+<td width="20%">Item</td>
+<td>Description</td>
+</tr>
+<tr>
+<td>Archive</td>
+<td>Destination path.</td>
+</tr>
+<tr>
+<td>Parameters</td>
+<td><a href="command-line.html">Command line parameters</a> for advanced compression control.</td>
+</tr>
+<tr>
+<td>Password</td>
+<td>Protect your data.</td>
+</tr>
+</table>
+<h3>Checkbox</h3>
+<table border="1" width="90%" cellpadding="5">
+<tr class="table-head">
+<td width="20%">Item</td>
+<td>Description</td>
+</tr>
+<tr>
+<td>Bigraph preprocessing</td>
+<td>Improvement compression ratio.</td>
+</tr>
+<tr>
+<td>Encrypt file names</td>
+<td>Advanced protect your data.</td>
+</tr>
+<tr>
+<td>Password show</td>
+<td>Verify password is correct.</td>
+</tr>
+</table>
+<h3>Combobox</h3>
+<table border="1" width="90%" cellpadding="5">
+<tr class="table-head">
+<td width="20%">Item</td>
+<td>Description</td>
+</tr>
+<tr>
+<td>Compression level</td>
+<td>From Store (without compression) to Ultra (best settings).</td>
+</tr>
+<tr>
+<td>Compression method</td>
+<td><a href="compression-algorithm.html">LZRE</a> or CM.</td>
+</tr>
+<tr>
+<td>Dictionary size</td>
+<td>LZRE method possible to set size in range [64k, 256m].<br>
+CM method possible to set size in range [64k, 16m].</td>
+</tr>
+<tr>
+<td>Match length maximum</td>
+<td>Maximum match length for LZRE in range [32, 1024].
+Context length for CM in range [4, 8].</td>
+</tr>
+<tr>
+<td>Match length minimum</td>
+<td>For LZRE method. Possible range [2, 8]. Minimum length [4, 8].<br>
+Length less 4 sets prefix length for hashing. Default value 5.</td>
+</tr>
+<tr>
+<td>Threads number</td>
+<td>For LZRE method. Possible range [1, 2].</td>
+</tr>
+</table>
+<br>
+<p>
+<a href="index.html">Index</a>
+</p>
+</body>
+</html>

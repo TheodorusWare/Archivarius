@@ -1,0 +1,50 @@
+Distance slot 6 bit
+
+Slot keep two distance msb.
+Slot less than 4 not have extra bits.
+Implementation from LZMA.
+
+=================
+Encoding distance
+=================
+
+d : distance from 4
+e : distance bits
+x : distance extra bits
+m : distance next bit after msb
+
+x = e - 2
+m = (d >> x) & 1
+slot = (x + 1) * 2 + m
+encode x
+
+=================
+Decoding distance
+=================
+
+x = slot / 2 - 1 
+m = slot & 1
+d = (2 + m) << x
+d = d + decode x
+
+========================
+Distance encoding scheme
+========================
+
+Write distance slot, than distance extra bits.
+
+yyyy : direct bits
+xxxx : model bits from msb to lsb
+
+First scheme encoded all extra binary
+digits by context model from msb to lsb.
+
+xxxx
+
+Next scheme encoded only low extra binary digits
+by context, remaining part is direct binary
+digits writed with default probability.
+
+yyyy xxxx
+
+First scheme is better!

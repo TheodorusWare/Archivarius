@@ -1,0 +1,135 @@
+-----------------------------------------------------------------------------
+	Archivarius command line syntax
+-----------------------------------------------------------------------------
+
+	archivarius <command> <archive> [-keys] [files ..] [path\]
+ 
+	<..>  not skip.
+	[..]  can skip.
+	
+-----------------------------------------------------------------------------
+	Commands
+-----------------------------------------------------------------------------
+
+	a   Append files to archive.
+	d   Delete files from archive.
+	e   Extract files from archive with full paths.
+	x   Extract files from archive without paths.
+	r   Rename files in archive.
+	l   Show list archive contents.
+
+-----------------------------------------------------------------------------
+	Keys
+-----------------------------------------------------------------------------
+
+	-m<n>         Compression method.
+	              Possible range [0, 2].
+	              0 Copy.
+	              1 LZRE.
+	              2 CM.
+
+	-ml<n>        Compression level.
+	              Possible range [1, 9].
+	              Level 1 better speed.
+	              Level 9 better compression ratio.
+
+	-md<n>[k,m]   Dictionary size.
+	              Dictionary size calculated as 2^n bytes.
+	              Suffixes k, m for setting size in kilo, mega bytes.
+	              LZRE method possible to set size in range [64k, 256m].
+	              CM method possible to set size in range [64k, 16m].
+
+	-mw<n>        Maximum match length.
+	              Maximum match length for LZRE in range [32, 1024].
+	              Context length for CM in range [4, 8].
+
+
+	              LZRE keys
+
+	-mn<n>        Minimum match length.
+	              Possible range [2, 8].
+	              Minimum length [4, 8].
+	              Length less 4 sets prefix length for hashing.
+					  Default value 5.
+
+	-mt<n>        Compression threads.
+	              Possible range [1, 2].
+
+	-mc<n>        Cycles count for match finder.
+	              Possible range [1, 2048].
+	              Level 9 set 128 cycles.
+
+	-ms<n>        Maximum count suffix nodes in binary search tree.
+	              Possible range [1, 128].
+
+	-mr<n>        Rolz count mode.
+	              Possible range [0, 3] -> [16, 64, 128, 256].
+
+	-mx           Context mixing enable.
+
+
+	              Common keys
+
+	-cr<n>        AES 128 encryption mode.
+	              Possible range [0, 3].
+	              0 Disable
+	              1 File names
+	              2 File data
+	              3 All
+
+	-p<s>         Password string.
+
+	-l<s>         File list from text file in UTF-8 format.
+
+	-bg           Bigraph preprocessing enable.
+
+-----------------------------------------------------------------------------
+	Remarks
+-----------------------------------------------------------------------------
+
+	[files] is files, directorys for append, extract.
+	Can use wildcards '*', '?'.
+	Extract list, first file is list name.
+	[path\] is appended or extracted path with backslash '\'.
+	If need double quotes around path set "path\\".
+	During files appended to archive and used [path\]
+	then [path\] excluded from file names.
+	During [de]compression, all files proccessed in solid mode.
+	Using sorting files by extension.
+
+	Rename command syntax
+	  A1 B1 [A2 B2 ..]
+	  rename file A1 to B1, A2 to B2 ..	  
+	  A\ B
+	  rename folder A to B
+	For single command can rename single folder or many files.
+	Count renaming items must be even.
+
+-----------------------------------------------------------------------------
+	LZRE 
+-----------------------------------------------------------------------------
+
+	Lempel Ziv Range Encoding
+
+	Dictionary lossless compression method, which is based 
+	on another method known as LZ77.
+	This method has been modified in several directions.
+
+	- Using 4 types of prefixes for different data.
+	- Range encoder to reduce the redundancy of different data types.
+	- Repeat distances    level 6
+	- Reduced distances   level 7
+	- Non greedy parsing  level 8
+	- Context mixing
+
+	Matches
+
+	<P, D, L>  prefix, distance, length.
+
+	Litera
+	
+	<P, L> prefix, litera.
+
+-----------------------------------------------------------------------------
+	Copyright (C) 2018-2020 Theodorus Software
+-----------------------------------------------------------------------------

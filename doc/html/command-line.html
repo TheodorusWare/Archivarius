@@ -1,0 +1,160 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Archivarius</title>
+</head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" href="image/style.css">
+<body>
+<p>
+<a href="index.html">Index</a>
+</p>
+<h1 align=center>Archivarius command line</h1>
+<h2 align=center>Syntax</h2>
+<table border="1" width="90%" cellpadding="5">
+<tr>
+<td width="15%">archivarius &lt;command&gt; &lt;archive&gt; [-keys] [files ..] [path\]</td>
+</tr>
+</table>
+<br>
+<p>
+&lt;..&gt; not skip <br>
+[..] can skip <br>
+[files..] Can use wildcards '*', '?'. <br>
+[path\] In append mode <i>path</i> is directory 
+from which files appended in archive exclude <i>path</i> from file names. <br>
+In extract mode <i>path</i> is output directory. <br>
+If need double quotes around <i>path</i> set "path\\" with double backslash at the end.
+</p>
+<br>
+<h2 align=center>Commands</h2>
+<table border="1" width="90%" cellpadding="5">
+<tr class="table-head">
+<td width="15%">Command</td>
+<td>Description</td>
+</tr>
+<tr>
+<td>a</td>
+<td>Append files to archive.</td>
+</tr>
+<tr>
+<td>d</td>
+<td>Delete files from archive.</td>
+</tr>
+<tr>
+<td>e</td>
+<td>Extract files from archive with full paths.</td>
+</tr>
+<tr>
+<td>x</td>
+<td>Extract files from archive without paths.</td>
+</tr>
+<tr>
+<td>l</td>
+<td>List archive contents.</td>
+</tr>
+<tr>
+<td>rn</td>
+<td>Rename files in archive.</td>
+</tr>
+</table>
+<h2 align=center>Keys</h2>
+<table border="1" width="90%" cellpadding="5">
+<tr class="table-head">
+<td width="15%">Key</td>
+<td>Description</td>
+</tr>
+<tr>
+<td>-m&ltn&gt</td>
+<td>
+Compression method.<br> Possible range [0, 2].<br>
+0 Direct copy.<br>
+1 <a href="compression-algorithm.html">LZRE.</a><br>
+2 CM.<br>
+</td>
+</tr>
+<tr>
+<td>-ml&lt;n&gt;</td>
+<td>Compression level.<br>
+Possible range [1, 9].<br>
+Level 1 better speed.<br>
+Level 9 better compression ratio.</td>
+</tr>
+<tr>
+<td>-md&lt;n&gt;[k,m]</td>
+<td>Dictionary size.<br>
+Dictionary size calculated as 2^n bytes.<br>
+Suffixes k, m for setting size in kilo, mega bytes.<br>
+LZRE method possible to set size in range [64k, 256m].<br>
+CM method possible to set size in range [64k, 16m].</td>
+</tr>
+<tr>
+<td>-mw&ltn&gt</td>
+<td>Maximum match length.<br>
+Maximum match length for LZRE in range [32, 1024].<br>
+Context length for CM in range [4, 8].</td>
+</tr>
+<tr>
+<td>-cr&ltn&gt</td>
+<td>
+<a href="https://en.wikipedia.org/wiki/Advanced_Encryption_Standard">AES</a> 128 encryption mode.<br>
+Possible range [0, 3].<br>
+0 Disable.<br>
+1 File names.<br>
+2 File data.<br>
+3 All.<br>
+</td>
+</tr>
+<tr>
+<td>-p&lts&gt</td>
+<td>Password string.</td>
+</tr>
+<tr>
+<td>-l&lts&gt</td>
+<td>File list from text file in UTF-8 format.</td>
+</tr>
+<tr>
+<td>-bg</td>
+<td>Bigraph preprocessing enable.</td>
+</tr>
+</table>
+<h2 align=center>LZRE Keys</h2>
+<table border="1" width="90%" cellpadding="5">
+<tr class="table-head">
+<td width="15%">Key</td>
+<td>Description</td>
+</tr>
+<tr>
+<td>-mt&ltn&gt</td>
+<td>Compression threads.<br>
+Possible range [1, 2].</td>
+</tr>
+<tr>
+<td>-mc&ltn&gt</td>
+<td>Cycles count for match finder.<br>
+Possible range [1, 2048]. Level 9 set 128 cycles.</td>
+</tr>
+<tr>
+<td>-mn&ltn&gt</td>
+<td>Minimum match length.<br> Possible range [2, 8]. Minimum length [4, 8].<br>
+Length less 4 sets prefix length for hashing. Default value 5.</td>
+</tr>
+<tr>
+<td>-ms&ltn&gt</td>
+<td>Maximum count suffix nodes in search tree.<br> Possible range [1, 128].</td>
+</tr>
+<tr>
+<td>-mr&ltn&gt</td>
+<td>Rolz count mode.<br> Possible range [0, 3] -> [16, 64, 128, 256].</td>
+</tr>
+<tr>
+<td>-mx&ltn&gt</td>
+<td>Context mixing enable.</td>
+</tr>
+</table>
+<br>
+<p>
+<a href="index.html">Index</a>
+</p>
+</body>
+</html>

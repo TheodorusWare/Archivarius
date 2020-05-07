@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Archivarius</title>
+</head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" href="image/style.css">
+<body>
+<p>
+<a href="index.html"> Index </a>
+</p>
+<h1 align=center>Archivarius</h1>
+<h2 align=center>Archive file format</h2>
+<h3>Archive header 40 bytes</h3>
+<table border="1" width="90%" cellpadding="5">
+<tr class="table-head">
+<td width="20%">Offset</td>
+<td>Bytes</td>
+<td>Description</td>
+</tr>
+<tr>
+<td>0x00</td>
+<td>4</td>
+<td>Archive signature arv3, 0x33767261 (little endian).</td>
+</tr>
+<tr>
+<td>0x04</td>
+<td>4</td>
+<td>Count files in archive.</td>
+</tr>
+<tr>
+<td>0x08</td>
+<td>8</td>
+<td>Files data size.</td>
+</tr>
+<tr>
+<td>0x10</td>
+<td>8</td>
+<td>Preprocessing bigraph size.</td>
+</tr>
+<tr>
+<td>0x18</td>
+<td>4</td>
+<td>Compression properties.</td>
+</tr>
+<tr>
+<td>0x1C</td>
+<td>4</td>
+<td>Archive options, low 2 bits encryption.</td>
+</tr>
+<tr>
+<td>0x20</td>
+<td>4</td>
+<td>Crc-32 crypt string.</td>
+</tr>
+<tr>
+<td>0x24</td>
+<td>4</td>
+<td>Crc-32 archive header.</td>
+</tr>
+</table>
+<h3>File header 22 bytes</h3>
+<table border="1" width="90%" cellpadding="5">
+<tr class="table-head">
+<td width="20%">Offset</td>
+<td width="11%">Bytes</td>
+<td>Description</td>
+</tr>
+<tr>
+<td>0x00</td>
+<td>2</td>
+<td>File name length.</td>
+</tr>
+<tr>
+<td>0x0A</td>
+<td>8</td>
+<td>File data size, uncompressed.</td>
+</tr>
+<tr>
+<td>0x0E</td>
+<td>4</td>
+<td>File data crc-32.</td>
+</tr>
+<tr>
+<td>0x0A</td>
+<td>8</td>
+<td>Last modified time for os windows.</td>
+</tr>
+</table>
+<h3>Archive file structure</h3>
+<table border="1" width="90%" cellpadding="5">
+<tr class="table-head">
+<td width="20%">Item</td>
+<td>Description</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Archive header.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>All files headers.</td>
+</tr>
+<tr>
+<td>3</td>
+<td>All files names.</td>
+</tr>
+<tr>
+<td>4</td>
+<td>All files datas.</td>
+</tr>
+</table>
+<br>
+<p>
+<a href="index.html">Index</a>
+</p>
+</body>
+</html>

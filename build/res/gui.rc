@@ -1,0 +1,42 @@
+#include "resource.h"
+#include <windows.h>
+
+// Application version
+VS_VERSION_INFO VERSIONINFO
+FILEVERSION     0,2,1,0
+PRODUCTVERSION  0,2,1,0
+FILEFLAGSMASK   VS_FFI_FILEFLAGSMASK
+FILEFLAGS       VS_FF_PRERELEASE
+FILEOS          VOS__WINDOWS32
+FILETYPE        VFT_APP
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904E4"
+        BEGIN
+            VALUE "CompanyName",      "Theodorus Software"
+            VALUE "FileDescription",  "Archivarius Gui"
+            VALUE "FileVersion",      "0.2.1"
+            VALUE "LegalCopyright",   "Copyright © 2020"
+            VALUE "OriginalFilename", "ArchivariusGui.exe"
+            VALUE "ProductName",      "Archivarius"
+            VALUE "ProductVersion",   "0.2.1"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1252
+    END
+END
+
+// Manifest file
+CREATEPROCESS_MANIFEST_RESOURCE_ID RT_MANIFEST "archivarius.manifest"
+
+// Icons
+IDI_ICON_1   ICON     "archivarius.ico"
+IDI_ICON_2   ICON     "append.ico"
+IDI_ICON_3   ICON     "extract.ico"
+IDI_ICON_4   ICON     "test.ico"
+IDI_ICON_5   ICON     "info.ico"
+IDI_ICON_6   ICON     "delete.ico"
+IDI_LOGO     BITMAP   "logo.bmp"

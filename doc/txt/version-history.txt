@@ -1,0 +1,67 @@
+-----------------------------------------------------------------------------
+	Archivarius version history
+-----------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------
+	Release 0.3.1          07.05.2020
+-----------------------------------------------------------------------------
+
+	Refactor sliding dictionary.
+	Hash table keep recent distance,
+	previous distances keeping in link table.
+	Binary tree removed.
+	Top prefix length is four.
+	This method is easy to implement and
+	reduces the amount of used memory.
+
+-----------------------------------------------------------------------------
+	Release 0.3.0          03.04.2020
+-----------------------------------------------------------------------------
+
+	Implement localisation.
+	Unicode supported for files of archives,
+	localisations in UTF-8 format.
+	Available languages are English, Russian.
+	Wide strings in UTF-16 format are stored in memory.
+
+-----------------------------------------------------------------------------
+	Release 0.2.1          17.03.2020
+-----------------------------------------------------------------------------
+
+	Implement license Apache-2.0.
+
+	Implement support files great 4 GB.
+	Fix error in progress widget, method eventCallback.
+	When call method setText for labels, need send string
+	object instead c string pointer.
+
+	Implement gui menu item view for select sorting type.
+	Each sorting type have hotkeys.
+	Convertion string chars to lower
+	case with winapi CharLowerA.
+
+	Refactor archive information.
+	Implement list view instead labels in archive information.
+	Increase LZRE maximum dictionary to 256 megabytes.
+
+	Update encoder settings.
+	Swap match maximum and minimum gui items.
+
+	Update cmd key -md<n> for dictionary size calculation.
+	Dictionary size calculated as 2^n bytes without
+	suffixes k, m. Default compress level 6.
+
+	Update dictionary calculation in archive module.
+	if N < D then D = N
+	if D = 0 then D = min(N, 2^24)
+	N input files size.
+	D dictionary size.
+
+	Fix error in file manager.
+	Fix wrong search path separator
+	in function searchArchiveFiles.
+	Instead reverse need direct search.
+
+-----------------------------------------------------------------------------
+	Copyright (C) 2018-2020 Theodorus Software
+-----------------------------------------------------------------------------

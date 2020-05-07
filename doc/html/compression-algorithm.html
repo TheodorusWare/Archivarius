@@ -1,0 +1,205 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Archivarius</title>
+</head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" href="image/style.css">
+<body>
+<p>
+<a href="index.html"> Index </a>
+</p>
+<h1 align=center>Archivarius compression algorithms</h1>
+<h2 align=center>LZRE</h2>
+<p>
+<b>L</b>empel <b>Z</b>iv <b>R</b>ange <b>E</b>ncoding. <br>
+Dictionary lossless compression method, which is based <br>
+on another method known as LZ77 or LZSS. <br>
+This method has been modified in several directions. <br>
+<ul>
+<li> Using 4 types of prefixes for different data. </li>
+<li> Range encoder to reduce the redundancy of different data types. </li>
+<li> Multithreading. </li>
+<li> Price table at level 5. </li>
+<li> Repeat distances at level 6. </li>
+<li> Reduced distances at level 7. </li>
+<li> Non greedy parsing at level 8. </li>
+<li> Context mixing. </li>
+</ul>
+</p>
+<br>
+<p>
+Matches <br><br>
+&ltP, D, L&gt - prefix, distance, length. <br><br>
+Litera <br><br>
+&ltP, L&gt - prefix, litera
+</p>
+<h3>Prefix codes</h3>
+<p>
+<table border="1" width="90%" cellpadding="5">
+<tr class="table-head">
+<td width="15%">Type</td>
+<td width="15%">Prefix code</td>
+<td width="15%">Sequence</td>
+<td>Description</td>
+</tr>
+<tr>
+<td>Litera</td>
+<td>0</td>
+<td>L</td>
+<td>Litera.</td>
+</tr>
+<tr>
+<td>Match</td>
+<td>1 or 10</td>
+<td>D L</td>
+<td>Distance, Length.</td>
+</tr>
+<tr>
+<td>Repeat</td>
+<td>11 or 110</td>
+<td>I L</td>
+<td>Index previous distance, 3 bit. Length.</td>
+</tr>
+<tr>
+<td>Rolz</td>
+<td>111</td>
+<td>I L</td>
+<td>Index in context array, variable bits. Length.</td>
+</tr>
+</table>
+</p>
+<h3>Match length encoding</h3>
+<p>
+<table border="1" width="90%" cellpadding="5">
+<tr class="table-head">
+<td width="15%">Type</td>
+<td width="15%">Prefix code</td>
+<td width="15%">Sequence</td>
+<td>Description</td>
+</tr>
+<tr>
+<td>Default</td>
+<td>0</td>
+<td>L</td>
+<td>Length encoded by full bits.</td>
+</tr>
+<tr>
+<td>Encoded</td>
+<td>1</td>
+<td>S</td>
+<td>Length short encoded by half bits.</td>
+</tr>
+</table>
+</p>
+<br>
+<h3 align=center>Algorithm</h3>
+<h3>Introduction</h3>
+<p>
+LZRE compression algorithm consist of sliding window and range coder to reduce redundancy.<br>
+The sliding window is divided into two parts.
+</p>
+<table border="1" width="40%" cellpadding="5">
+<tr>
+<td width="60%">dictionary</td>
+<td>look ahead</td>
+</tr>
+</table>
+<p>
+First part is search buffer or dictionary.
+Second part is look ahead buffer or lab.
+The search buffer stores encoded characters.
+The look ahead buffer stores the characters that will be encoded.
+The movement takes place from left to right in the text.
+Input data sequence often contain matching long substrings.
+Idea of sliding window is to replace the duplicate strings with dictionary references,
+which can be represented as distance and length of match &lt;distance, length&gt;.
+</p>
+<h3>Compression algorithm</h3>
+<p>
+<ol>
+<li>Input data sequence save in look ahead buffer.</li>
+<li>Search longest match from look ahead buffer in dictionary.</li>
+Maximum match length can be in the range [32, 1024].<br>
+If non greedy parsing enabled, search is made for several matches from positions 0, 1 in lab.
+If length second match is greater than first, litera sent to output stream.
+<li>Bitwise writing of codes through range coder to output stream.</li>
+<li>Update dictionary.</li>
+</ol>
+</p>
+<h3>Uncompression algorithm</h3>
+<p>
+<ol>
+<li>Decode prefix, read litera or match from input compressed stream.</li>
+<li>Write decoded string to output stream.</li>
+<li>Update dictionary.</li>
+</ol>
+</p>
+<p>
+This example shows that the decompression algorithm is simpler and faster than compression.
+</p>
+<h3>Dictionary update</h3>
+<p>
+Hash four byte prefixes, search in hash table, insert in case of absence.
+Hash table item contains self balancing binary search tree for suffixes, also known as a AVL tree.
+Suffix is fifth byte after four byte prefix. Tree node contains ring buffer of dictionary distances.
+Search suffix in binary tree, insert in case of absence.
+Save prefix position to tree node, which is called an <i>distance</i> of dictionary.
+This search structure is called a <i>hash chain</i>, which is also used to find matches.
+For example, hash string <i>wonderful</i> and find five prefixes.<br>
+<ol>
+<li><b>wonde</b>rful</li>
+<li>w<b>onder</b>ful</li>
+<li>wo<b>onderf</b>ul</li>
+<li>...</li>
+</ol>
+</p>
+<h3>Compression example</h3>
+<p>
+This example shows string encoding from sliding window.<br>
+</p>
+<table border="1" width="40%" cellpadding="5">
+<tr>
+<td width="65%">A forester lived in the</td>
+<td>&nbspforest</td>
+</tr>
+</table>
+<p>
+Word <i>forest</i> from LAB replace by dictionary reference &lt;1, 7&gt;,<br>
+Dictionary distance is 1, length of match is 7.<br>
+Result we get encoded string<br>
+</p>
+<table border="1" width="40%" cellpadding="5">
+<tr>
+<td>A forester lived in the&lt;1, 7&gt;</td>
+</tr>
+</table>
+<p>
+Instead 30 byte string output 26 byte data sequence.<br>
+Which consist of 23 characters by one byte<br>and single dictionary reference by 3 bytes.<br>
+Excluding one bit flag before each character.<br>
+Message size reduced by 4 byte.<br>
+</p>
+<br>
+<h2 align=center>CM</h2>
+<p>
+Context Mixing at bit level.<br>
+Mixing all context of order n = 1 to N. Maximum order 8.
+In order n of context, the next bit is
+predicted in the context of the last n - 1 bytes, 
+plus the last 0 to 7 bits of the current byte.
+Each time a 0 or 1 occurs in some
+context, the counts 0 and 1 associated with that context is incremented.
+If the opposite count is more than 2, then the excess is halved.
+The counts are weighted by n^2.
+As a result, we get a total counts 0 and 1
+from all contexts of order 1 to N.
+This method is easy to implement, provides
+good compression, but requires a lot of time.
+</p>
+<br>
+<p>
+<a href="index.html"> Index </a>
+</p>
+</body>
+</html>

@@ -1,0 +1,174 @@
+; UTF-8
+; Menu
+File
+Open archive
+Close archive
+Open log
+Options
+Exit
+
+Commands
+Archive
+Unarchive
+Test
+Information
+Delete
+Rename
+Update
+Select address
+Select all
+Copy
+Paste
+Create folder
+
+View
+Name
+Type
+Time
+Size
+
+Help
+Manual
+About
+
+; Toolbar tooltips
+Append files to archive
+Extract files from archive
+Test archive files
+Information about files
+Delete files
+
+; Columns
+Modified
+CRC-32
+
+; Statusbar
+Selected %u / %u directories %u / %u files
+
+; Encode settings
+Archiving settings
+Archive
+Compression level
+Compression method
+Dictionary size
+Match length maximum
+Match length minimum
+Threads number
+Parameters
+Password
+; Compression level
+Store
+Fastest
+Fast
+Normal
+Quality
+Ultra
+; Tooltips
+File dialog
+Bigraph preprocessing
+Encrypt file names
+Show password
+; File dialog
+Select archive location
+All files
+
+...
+OK
+Cancel
+
+; Decode settings
+Unarchiving settings
+Output directory
+File paths
+Without paths
+Relative paths
+Full paths
+Select output directory
+
+; Information
+Archive information
+Value
+Files count
+Source size
+Compressed size
+Ratio
+Method
+Level
+Dictionary
+Match
+Rolz
+Threads
+Context mixing
+Context length
+Encryption
+Names
+Data
+All
+Preprocess
+Bigraph
+Enable
+None
+
+; Progress
+Archiving
+Unarchiving
+Testing
+Speed
+Files
+Current
+Total
+Stop?
+
+; Options
+Window align center
+Window maximized
+Full row select
+Language
+System
+Integration
+Segregation
+
+; About title
+About Archivarius
+; Create folder widget
+Folder
+; Password widget
+Show
+
+; Messages
+Deleting
+Before archiving select items in file list!
+Before unarchiving select items in file list!
+Before deleting select items in file list!
+Delete selected files irrevocably?
+Delete selected files in recycle bin?
+Delete selected files from archive?
+File %s not launched!
+Operation not supported inside archive!
+Unarchiving %s completed with errors!
+Archives not founded!
+Archive %s tested with errors!
+Testing successfully completed!
+Password incomplete!
+
+; Files types
+Up
+Executable
+Library
+Batch
+Archive
+System
+Source C/C++
+Header C/C++
+Text
+Book
+Document
+Web page
+
+; Bytes
+B
+Kb
+Mb
+Gb
+; Per seconds
+s

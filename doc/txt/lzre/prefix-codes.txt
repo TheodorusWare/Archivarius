@@ -1,0 +1,62 @@
+§ LZRE Prefixes §
+
+Update 29.09.2019
+Update 14.12.2018
+
+Prefixes four types
+
+0   : Litera
+1*  : Match
+11* : Repeat
+111 : Rolz
+
+Litera - single bit prefix
+
+	0 L
+
+	L - litera 8 bit
+
+Match - two bit prefix
+
+	P D L
+
+	P - prefix 1 or 10 with repeat
+	D - distance
+	L - length
+
+Repeat - variable bit prefix
+
+	P N L
+
+	P - prefix 11 or 110 with rolz
+	N - index previous distance, 3 bits
+	L - length
+
+Rolz - three bit prefix
+
+	P N L
+
+	P - prefix 111
+	N - index in context array, variable bits
+	L - length
+
+• Match length encoding •
+
+Length type encoded by single bit prefix
+
+Prefixes two types
+
+0 : Length
+1 : Length short
+
+Length
+
+	0 L
+
+	L - length encoded by full bits
+
+Length encoded
+
+	1 S
+
+	S - length short encoded by half bits
